@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Isaiah Martinez</title>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script>
+              $(document).ready(function() {
+                $("#name").animate({
+                    opacity: "1",  
+                });
+       
+                $("button").click(function(){
+                    $("#info").animate({
+                      opacity:"1",  
+                    });
+                    $("#info2").animate({
+                      opacity:"1",  
+                    });
+                    $("#info3").animate({
+                      opacity:"1",  
+                    });
+
+                $("button").click(function(){
+                    $(".divColor").css("background-color","#8b0000")
+                    }); 
+                });
+               
+                  $("#name").popover();   
+                });
+                $(document).ready(function() {
+                $.ajax({
+                    url:"https://data.cityofchicago.org/resource/cm53-g3up.json",
+                    success: function(result) {
+                        console.log(result)
+                    }
+                });     
+                
+            });
+            </script>
+        </head>
+        <style>
+            .thin-black-border{
+            border-color:black;
+            border-width:10px;
+            border-style:solid;
+            }
+            body{
+                background-image: url("http://www.qygjxz.com/data/out/255/4322003-white-background-image.png");
+            }
+            .divColor{
+                background-color:black;
+                color: white;
+                font-family: verdana;
+                text-align: center;
+                opacity:0;
+            }
+            .picSize{
+                width:400px;
+            }
+            #container{
+                width:70%;
+                height: auto;
+                margin-top:auto;
+                margin-left: auto;
+                margin-right: auto;
+                background: gray;
+            }
+            
+            #header ul{
+                list-style-type:none;
+                margin: 0;
+                padding: 0;
+                overflow:hidden;
+                background-color:gray;
+            }
+            
+            #header li{
+                display: inline;
+                float:left;
+            }
+            #header li a{
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            .clout{
+                opacity:0;
+            }
+        </style>
+        
+        <header>
+            <div class="container-fluid" id="header">
+                <ul>
+                    <li><a href="aboutme.html">Home</a></li>
+                    <li><a href="interest_one.html">Video Games</a></li>
+                    <li><a href="interest_two.html">Drawing</a></li>
+               </ul>
+             </div>
+        </header>
+        <body>
+            <div id="container" style="text-align=center">
+                <h1 id="name" class="divColor"><a href="#" data-toggle="popover" title="Popover Header" data-content="Some inforation on the creator of the website">Isaiah Martinez</a></h1>
+                
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                   <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                   </ol>
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <img class="img-responsive" src="icon.jpg" alt="Icon" style="width:50%; margin:auto;">
+                          </div>
+                          <div class="item">
+                              <img class="img-responsive" src="isaiah2.jpg" alt="Isaiah" style="width:50%; margin:auto;">
+                          </div>
+                          <div class="item">
+                              <img class="img-responsive" src="banana.jpg" alt="Other Isaiah Pic" style="width:50%; margin:auto;">
+                          </div>
+                      </div>
+                      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                      <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                      <span class="sr-only">Next</span>
+                      </a>
+                </div>
+            <br>
+            <p style="text-align:center">
+                <button><h2>Hobbies and Interests??</h2></button>
+            </p>
+
+             <div class="row">
+                 <div class="well well-sm"><h4>Watching Youtube</h4> <p id=info class=clout>I usually watch comedy on there, I love laughing and that seems to do the trick</p></div>
+                 <div class="well well-sm"><h4>Playing Video Games</h4> <p id=info2 class=clout>All different types, specifically on PS4</p></div>
+                 <div class="well well-sm"><h4>Drawing Pictures</h4> <p id=info3 class=clout>Sketching in my sketchbook or other types of paper</p></div>
+             </div>
+            <div class="row">
+<!-- this is to center the modal-->
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1"></div>
+<!-- this is the beginning of the actual modal coding-->
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Who is Isaiah?</button>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Who is Isaiah?</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>"Isaiah is a giant nerd who does his best to impress.  Ok, I'm done.  Where's the money you said you'd give me." - J. Barreiro</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            
+        </body>
+    </html>

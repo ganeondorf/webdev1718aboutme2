@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Isaiah Martinez</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script>
+              $(document).ready(function() {
+                $("#name").animate({
+                    opacity: "1", });
+                    
+                $("#flip").click(function(){
+                    $("#panel").slideDown("slow");
+                });
+                
+                $("#flip").click(function(){
+                    $("#childhood").css("background-color","#8b0000");
+                });
+              });
+            </script>
+        </head>
+        <style>
+            .thin-black-border{
+                border-color:black;
+                border-width:10px;
+                border-style:solid;
+            }
+            body{
+                 background-image: url(http://www.chrisspagani.com/wp-content/uploads/2010/04/bw-3-revisit.jpg);
+                 background-position:right top;
+                 background-size:900px
+            }
+            .divColor{
+                background-color:black;
+                color: white;
+                font-family: verdana;
+                text-align: center;
+                opacity:0;
+            }
+            .picSize{
+                width:450px;
+            }
+            #container{
+                width:70%;
+                height: auto;
+                margin-left: auto;
+                margin-right: auto;
+                background: gray;
+            }            
+             #header ul{
+                list-style-type:none;
+                margin: 0;
+                padding: 0;
+                overflow:hidden;
+                background-color:gray;
+            }
+            #header li{
+                display: inline;
+                float:left;
+            }
+            #header li a{
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            .text{
+                color:lightblue;
+                
+            }
+            .p{
+                color:white;
+            }
+            #panel, #flip {
+                padding: 5px;
+                text-align: center;
+                background-color: #e5eecc;
+                border: solid 1px #c3c3c3;
+            }
+
+            #panel {
+                padding: 50px;
+                display: none;
+            }
+            
+        </style>
+        <header>
+            <div id="header">
+                <ul>
+                    <li><a href="aboutme.html">Home</a></li>
+                    <li><a href="interest_one.html">Video Games</a></li>
+                    <li><a href="interest_two.html">Drawing</a></li>
+               </ul>
+             </div>
+        </header>
+        <body>
+            <div id="container">
+                 <h1 id=name class="divColor">Video Games</h1>
+                <div class="container-fluid">
+                <h3 class="text" style="text-align:center">
+                     Borderlands 2
+                </h3>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                   <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                   </ol>
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <img class="img-responsive" src="all.jpg" alt="Icon" style="width:50%; margin:auto;">
+                          </div>
+                          <div class="item">
+                              <img class="img-responsive" src="siren.jpg" alt="Isaiah" style="width:50%; margin:auto;">
+                          </div>
+                          <div class="item">
+                              <img class="img-responsive" src="assassin.jpg" alt="Other Isaiah Pic" style="width:50%; margin:auto;">
+                          </div>
+                      </div>
+                      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                      <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                      <span class="sr-only">Next</span>
+                      </a>
+                </div>
+              
+            <h4 class="divColor" >The Juicy Details</h4>
+                  <p id=childhood class="p">
+                    As a kid I was always facinated by the ideas of video gaming and things of that nature.  My cousin and I used to stay up late trying to finish an entire game in one day.  Most of my fond memories were from those moments.  
+                    I love the action adventure genre of gaming it is my bread and butter.  I won't lie, I'm not as good as most people but I think that I'm ok.  While I will admit I hate first person shooters, one of my favorite games (Borderlands 2) is one itself.  
+                </p>
+            <h4 class="divColor">Real World Connections</h4>
+                    <div class="jumbotron">
+                        <div id="flip"><h4 class="text-warning" style="text-align=left"> Here are come websites which may help with video game curiosity.</h4></div>
+                        <div id="panel">
+                            <p>
+                                <ul>
+                                    <li>
+                                        <a href= ign.com> IGN: Reviews and More</a>
+                                    </li>
+                                    <li>
+                                        <a href=steamcomunity.com> Steam Forums: Guides and Conversations </a>
+                                    </li>
+                                    <li>
+                                        <a href=youtube.com> Youtube: Anything you can imagine </a>
+                                    </li>
+                                    <li>
+                                        <a href=www.eurogamer.com> Euro-Gamer: What else needs to be said?</a>
+                                    </li>
+                                    <li>
+                                        <a href=gamespot.com> Game Spot: The spot... for games</a>
+                                    </li>
+                                </ul>
+                            </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </body>
+    </html>
