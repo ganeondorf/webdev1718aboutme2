@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <title>Where is Lane Tech?</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+        <style>
+            #container{
+                width:70%;
+                height: 900px;
+                margin-top:auto;
+                margin-left: auto;
+                margin-right: auto;
+                background-color:#faebd7;
+                opacity:1;
+            }
+            body{
+                background-image:url("https://static.pexels.com/photos/479453/pexels-photo-479453.jpeg");
+                background-size:1919px 903px;
+                opacity:.9;
+                
+            }
+            #title{
+                text-align:center;
+                font-family: 'Permanent Marker', cursive;
+            }
+            #map {
+                height: 700px;
+                width: 100%;
+                border:5px solid #B5CFEA;
+            }
+        </style>
+        <body>
+            <script>
+                function initMap() {
+                    var lane = {lat: 41.9454, lng: -87.6907};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: lane
+                    });
+                    var marker = new google.maps.Marker({
+                      position: lane,
+                      map: map
+                    });
+                }
+            </script>
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSXU2RI-GjLibwWvpOAChhFl2LGM9OHts&callback=initMap">
+            </script>
+            <div class="container-fluid" id="container">
+                <h1 id="title">Lane Tech is Where? </h1>
+                <br>
+                <div id="map"></div>
+<!--https://developers.google.com/maps/documentation/javascript/adding-a-google-map-->          
+            </div>
+        </body>
+    </html>
