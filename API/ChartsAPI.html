@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <title>Abandoned Vehicle Requests Compiled by the City of Chicago</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Joti+One" rel="stylesheet">
+        <style>
+            #container{
+                width:70%;
+                height: 900px;
+                margin-top:auto;
+                margin-left: auto;
+                margin-right: auto;
+                background-color:#DDCA49;
+                opacity:1;
+                border: 5px solid #5B3C97;
+            }
+            body{
+                background-image:url("http://i64.tinypic.com/20ijbcp.jpg");
+                background-size:1919px 903px;
+                opacity:.98;
+                
+            }
+            #title{
+                text-align:center;
+                font-family: 'Joti One', cursive;
+                color:#DD6049;
+            }
+            #chart_div{
+                height: 710px;
+                width: 710px;
+                border:5px solid #35A25A;
+                margin-top:auto;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+        <head>
+            
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script type="text/javascript">
+
+                      // Load the Visualization API and the corechart package.
+              google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+              var table = $file_get_contents=("https://data.cityofchicago.org/resource/suj7-cg3j.json?$select=vehicle_make_model,COUNT(vehicle_make_model)&$group=vehicle_make_model");
+        
+
+              function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Names');
+                data.addColumn('number', 'Vehicles');
+                
+        
+                // Set chart options
+                var options = {'title':'Abandoned Vehicle Requests (2017)',
+                               'width':700,
+                               'height':700};
+        
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+              }
+            </script>
+            
+        </head>
+        <body>
+             <!--5B3C97 - purple, DD6049 - orange, 35A25A - green-->
+            <div class="container-fluid" id="container">
+                <br>
+                <h1 id="title">Abandoned Vehicle Requests</h1>
+                <br>
+                <div id="chart_div"></div>
+        </body>
+    </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Isaiah API Project</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        </head>
+        <style>
+            #container{
+                width:70%;
+                height: auto;
+                margin-top:auto;
+                margin-left: auto;
+                margin-right: auto;
+                background: #000080;
+            }
+            .title{
+                color:white;
+                text-align:center;
+                font-family: 'Lobster', cursive;
+            }
+             body{
+                background-image: url("http://www.daydreaminganddecor.com/dreaming/architectural_styles_and_design_patterns1578747236.jpg");
+            }
+            #pic{
+                text-align:center;
+            }
+            #description{
+                color:black;
+                text-align:center;
+            }
+            #results{
+                color:white;
+            }
+        </style>
+        <body>
+            <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $("button").click(function(){
+                        //console.log("clicked");
+                        $.ajax({
+                            url:"https://data.cityofchicago.org/resource/suj7-cg3j.json",
+                            success:function(result){
+                                console.log(result);
+                                var output=" ";
+                                $.each(result, function(index, value){
+                                    //console.log(index + " " + value);
+                                    //output += "<div class='output'>" + value.park + " " + value.park_adress + "</div>";
+                                    $("#results").append(value.COUNT_vehicle_make_model + " " + "-" +" "+ value.vehicle_make_model + ","+ " " + "</div>");
+                                });
+                            //$("#results").html(output);
+                            }
+                        });
+                    });
+                });
+            </script>
+            <div class="container-fluid" id="container">
+                <br>
+                <h2 class="title">Movies in the Park</h2>
+                <br>
+                <p id="pic"><img src="resized.jpg" alt="Resized" style="width:50%"></p>
+                <br>
+                <div class="jumbotron">
+                    <p id="description">This app is designed to give the names and the movies shown in the parks of Chicago.  The button titled "Movies?" displays the name of the park and then the name of the movie.</p>
+                </div>
+                <br>
+                <button>Movies?</button>
+                <br>
+                <div id="results">
+                    
+                </div>
+            </div>
+            
+        </body>
+    </html>
