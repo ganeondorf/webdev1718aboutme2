@@ -47,9 +47,47 @@
                     ctx.fillStyle = grd;
                     ctx.fillRect(0,215,500,80);
                 //text
-                    ctx.font = "30px Joti One";
-                    ctx.fillStyle="red";
-                    ctx.fillText("Isaiah", 155, 265);
+                    ctx.beginPath();
+                    ctx.rect(75, 100, 100, 10);
+                    ctx.closePath();
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = 'black';
+                    ctx.stroke();
+                    ctx.fillStyle = "black";
+                    ctx.fill();
+                    ctx.rect(75, 200, 100, 10);
+                    ctx.closePath();
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = 'black';
+                    ctx.stroke();
+                    ctx.fillStyle = "black";
+                    ctx.fill();
+                    ctx.rect(120, 100, 10, 100);
+                    ctx.closePath();
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = 'black';
+                    ctx.stroke();
+                    ctx.fillStyle = "black";
+                    ctx.fill();
+                //.rotate(Math.PI / 4)
+                //text2
+                 ctx.beginPath();
+                    ctx.translate(270, 150);
+                    ctx.rotate(Math.PI / 7);
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(-40, -40, 10, 110);
+                    ctx.translate(20,-30);
+                    ctx.rotate(Math.PI / -4);
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(-40, -40, 10, 110);
+                    ctx.translate(32,32);
+                    ctx.rotate(Math.PI / 5);
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(-40, -40, 10, 110);
+                    ctx.translate(20,-40);
+                    ctx.rotate(Math.PI / -4);
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(-40, -40, 10, 110);
                 </script> 
             </div>
         </body>
