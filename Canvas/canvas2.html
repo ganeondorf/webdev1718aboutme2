@@ -1,6 +1,6 @@
 <!DOCTYPE html>
     <html lang="en">
-        <title>Clock</title>
+        <title>Part 2</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,31 +21,44 @@
                 font-family: 'Joti One', cursive;
                 color:purple;
             }
+             body{
+                background-image: url("http://www.qygjxz.com/data/out/255/4322003-white-background-image.png");
+            }
         </style>
         <head>
         </head>
         <body>
             <div id="container">
                 <br>
-                <h1 id="title">Name Clock</h1>
+                <h1 id="title">Animation</h1>
                 <br>
                 <p align="center">
-                    <canvas id="myCanvas" width="400" height="500" style="border:3px solid #000000; background-color:white">
+                    <canvas id="myCanvas" width="500" height="500" style="border:3px solid #000000; background-color:white">
                     </canvas>
                 </p>
                 <script>
-                //circle
-                    var c = document.getElementById("myCanvas");
-                    var ctx = c.getContext("2d");
-                    ctx.beginPath();
-                    ctx.arc(200,250,100,0,2*Math.PI);
-                    ctx.stroke();
-                //gradient
-                    var grd = ctx.createRadialGradient(200,200,250,200,250,100);
-                    grd.addColorStop(0,"red");
-                    grd.addColorStop(1,"white");
-                    ctx.fillStyle = grd;
-                    ctx.fillRect(0,215,500,80);
+                    var imgTag = new Image();
+                    var canvas = document.getElementById('myCanvas');
+                    var ctx = canvas.getContext("2d");
+                    var text = canvas.getContext("2d");
+                    var x = canvas.width;
+                    var y = 0;
+                    
+                    //image
+                    imgTag.onload = animate;
+                    imgTag.src = "http://i.stack.imgur.com/Rk0DW.png";
+                    
+                    //animation
+                    function animate() {
+                      ctx.clearRect(0, 0, canvas.width, 300);
+                      ctx.font = "30px Arial";
+                      ctx.fillText("Isaiah Martinez",10,50);
+                      ctx.drawImage(imgTag, x, y);                       
+                      x -= 4;
+                      if (x > 250) requestAnimationFrame(animate)        
+                    }
+                    
+
                 </script> 
             </div>
         </body>
