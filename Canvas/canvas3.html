@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <title>Part 2</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Joti+One" rel="stylesheet">
+        <style>
+            #container{
+                width:70%;
+                height: 900px;
+                margin-top:auto;
+                margin-left: auto;
+                margin-right: auto;
+                background-color:orange;
+                opacity:1;
+                border:1px solid black;
+            }
+            #title{
+                text-align:center;
+                font-family: 'Joti One', cursive;
+                color:purple;
+            }
+             body{
+                background-image: url("http://www.qygjxz.com/data/out/255/4322003-white-background-image.png");
+            }
+        </style>
+        <head>
+        </head>
+        <body>
+            <div id="container">
+                <br>
+                <h1 id="title">Animation</h1>
+                <br>
+                <p align="center">
+                    <canvas id="myCanvas" width="500" height="500" style="border:3px solid #000000; background-color:white">
+                    </canvas>
+                </p>
+                <script>
+                    var imgTag = new Image();
+                    var canvas = document.getElementById('myCanvas');
+                    var ctx = canvas.getContext("2d");
+                    var text = canvas.getContext("2d");
+                    var light = canvas.getContext("2d");
+                    var redLight = canvas.getContext("2d");
+                    var greenLight = canvas.getContext("2d");
+                    var x = 400;
+                    var y = 0;
+
+                    
+                    //image
+                    imgTag.onload = animate;
+                    imgTag.src = "http://i.stack.imgur.com/Rk0DW.png";
+                    
+                    // car animation
+                    function animate() {
+                      ctx.clearRect(0, 0, canvas.width, 300);
+                      ctx.drawImage(imgTag, x, y);                       
+                      x -= 4;
+                      if (x > 90) requestAnimationFrame(animate) 
+                      
+                      //needed for some reason
+                      ctx.beginPath();
+                      ctx.fillRect(30,10,40,70);
+                      ctx.fillStyle = '#808080';
+                      ctx.fill();
+                      ctx.stroke();
+                      
+                      //light post
+                      ctx.beginPath();
+                      ctx.fillRect(30,10,40,70);
+                      ctx.fillStyle="#808080";
+                      ctx.fill();
+                      ctx.stroke();
+                      ctx.beginPath();
+                      ctx.fillRect(45, 10, 10, 145);
+                      ctx.fillStyle="#808080";
+                      ctx.fill();
+                      ctx.stroke();
+                      
+                      //green light
+                      var centerX = 50;
+                      var centerY = 66;
+                      var radius = 10;
+                      greenLight.beginPath();
+                      greenLight.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                      greenLight.fillStyle = 'green';
+                      greenLight.fill();
+                      greenLight.stroke();
+                      
+                      //red light
+                      var centerX = 50;
+                      var centerY = 23;
+                      var radius = 10;
+                      redLight.beginPath();
+                      redLight.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                      redLight.fillStyle = 'maroon';
+                      redLight.fill();
+                      redLight.stroke(); 
+                      
+                      //yellow light
+                      var centerX = 50;
+                      var centerY = 44.5;
+                      var radius = 10;
+                      light.beginPath();
+                      light.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                      light.fillStyle = '#CCCC00';
+                      light.fill();
+                      light.stroke(); 
+                          
+                      //light animation
+                      //I tried to make the green light appear as well but due to come complicatin it didn't end up working
+                      //I feel as though this is acceptable as the light changes as the car gets closer to the stop light
+                         if (x>199){
+                            var centerX = 50;
+                            var centerY = 44.5;
+                            var radius = 10;
+                            light.beginPath();
+                            light.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                            light.fillStyle = 'yellow';
+                            light.fill();
+                            light.stroke(); 
+                        }
+                        else{
+                            var centerX = 50;
+                            var centerY = 23;
+                            var radius = 10;
+                            redLight.beginPath();
+                            redLight.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                            redLight.fillStyle = 'red';
+                            redLight.fill();
+                            redLight.stroke();
+                        }
+                    }
+                    
+                    
+                </script> 
+            </div>
+        </body>
+    </html>
