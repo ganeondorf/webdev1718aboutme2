@@ -109,19 +109,17 @@
                       light.stroke(); 
                           
                       //light animation
-                      //I tried to make the green light appear as well but due to come complicatin it didn't end up working
-                      //I feel as though this is acceptable as the light changes as the car gets closer to the stop light
-                         if (x>199){
-                            var centerX = 50;
-                            var centerY = 44.5;
-                            var radius = 10;
-                            light.beginPath();
-                            light.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                            light.fillStyle = 'yellow';
-                            light.fill();
-                            light.stroke(); 
+                         if (x>=300){
+                          var centerX = 50;
+                          var centerY = 66;
+                          var radius = 10;
+                          greenLight.beginPath();
+                          greenLight.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                          greenLight.fillStyle = 'lightgreen';
+                          greenLight.fill();
+                          greenLight.stroke();  
                         }
-                        else{
+                        else if (x<=120){
                             var centerX = 50;
                             var centerY = 23;
                             var radius = 10;
@@ -131,8 +129,18 @@
                             redLight.fill();
                             redLight.stroke();
                         }
+                        else {
+                            var centerX = 50;
+                            var centerY = 44.5;
+                            var radius = 10;
+                            light.beginPath();
+                            light.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                            light.fillStyle = 'yellow';
+                            light.fill();
+                            light.stroke(); 
+                        }
+                        
                     }
-                    
                     
                 </script> 
             </div>
