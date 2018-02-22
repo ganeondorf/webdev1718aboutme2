@@ -14,6 +14,7 @@
         <body>
             <div>
                 <canvas id="myCanvas" width='480' height='320'> </canvas>
+                <!--the 7th step-->
                 <script>
                 //reference
                     var canvas=document.getElementById("myCanvas");
@@ -30,6 +31,28 @@
                     var paddleX=(canvas.width-paddleWidth/2);
                     var rightPress=false;
                     var leftPress=false;
+                    var brickRowCount = 3;
+                    var brickColumnCount = 5;
+                    var brickWidth = 75;
+                    var brickHeight = 20;
+                    var brickPadding = 10;
+                    var brickOffsetTop = 30;
+                    var brickOffsetLeft = 30;
+                    var bricks = [];
+                        for(var c = 0; c < brickColumnCount; c++){
+                        	bricks[c] = [];
+                        	for(var r = 0; r < brickRowCount;  r++){
+                        		bricks[c][r] = { x: 0, y: 0, status: 1 };
+                        	}
+                        }
+
+                    var brickX = (c*(brickWidth + brickPadding)) + brickOffsetLeft;
+                    var brickY = (r*(brickHeight + brickPadding)) + brickOffsetTop;
+                    var score = 0;
+                    var life = 3;
+
+
+
                     
                 // creation and animation
                     function drawBall(){
@@ -46,28 +69,53 @@
                         ctx.fill();
                         ctx.closePath();
                     }
+                    function drawBricks() {
+                    	for(var c = 0; c < brickColumnCount; c++){
+                    		for(var r = 0; r < brickRowCount; r++){
+                    			if(bricks[c][r].status == 1){
+                                bricks[c][r].x = 0;
+                    			bricks[c][r].y = 0;
+                    			ctx.beginPath();
+                    			ctx.rect(0, 0, brickWidth, brickHeight);
+                    			ctx.fillStyle = 'green';
+                    			ctx.fill();
+                    			ctx.closePath();
+                    		}
+                    		}
+                    	}
+                    }
                     function draw(){
                     	ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    	drawBricks();
                     	drawBall();
-                    	drawPaddle();
+                    	collisionDetection();
+                    	drawScore();
+                    	drawLives();
                     	x += dx;
                     	y += dy;
-                    	if (rightPress){
-                    	    paddleX+=7;
-                    	}
-                    	else if (leftPress){
-                    	    paddleX-=7;
-                    	}
                     	if(rightPress && paddleX < canvas.width-paddleWidth){
                         	paddleX += 7;
-                        } else if(leftPress && paddleX > 0){
+                        } 
+                        else if(leftPress && paddleX > 0){
                         	paddleX -= 7;
                         }
-
+                        drawPaddle();
                     }
+                    function drawScore(){
+                    	ctx.font = "16px arial";
+                    	ctx.fillStyle = 'black';
+                    	ctx.fillText('Score: ' + score, 8, 20);
+                    }
+                   function drawLives(){
+                       ctx.font = "16px arial";
+                    	ctx.fillStyle = 'black';
+                    	ctx.fillText('Lives: ' + life, 108, 20);
+                   }
+                    
+                    
                     
                 //key functions
-                    document.addEventListener(“keydown”, keyDownHandler, false);
+                    document.addEventListener("keydown", keyDownHandler, false);
                     function keyDownHandler(e){
                         if (e.keyCode==39){
                             rightPress=true;
@@ -77,7 +125,7 @@
                         }
                     }
                     
-                    document.addEventListener(“keyup”, keyUpHandler, false);
+                    document.addEventListener("keyup", keyUpHandler, false);
                     function keyUpHandler(e){
                         if (e.keyCode==39){
                             rightPress=false;
@@ -89,17 +137,44 @@
 
                     setInterval(draw, 10);
                 
+                
+                
                 //collision detection
-                    if(y + dy < 0 || y + dy > canvas.height - ballRadius){
+                    if(y + dy < ballRadius){
                     	dy = -dy;
+                    }
+                    else if(y + dy > canvas.height - ballRadius) {
+                    	if(x > paddleX && x < paddleX + paddleWidth) {
+                    		dy = -dy
+                    	} 
+                        else{
+                    		life-=1;
+                    	}
+                    	if (life==0){
+                    	    alert("GAME OVER");
+                        	document.location.reload();
+                    	}
                     }
                     if(x + dx > canvas.width - ballRadius || x + dx < ballRadius){
                     	dx = -dx;
                     }
-
-                
-                
-                
+                    function collisionDetection() {
+                    	for(var c = 0; c < brickColumnCount; c++){
+                    		for(var r = 0; r < brickRowCount; r++){
+                    			var b = bricks[c][r];
+                    			if(b.status == 1){
+                    				if(x > b.x && x < b.x+brickWidth && y>b.y && y<b.y + brickHeight){
+                    					dy = -dy;
+                    					b.status = 0;
+                    					score+=1;
+                    				}
+                    			}
+                    			if (score==brickRowCount * brickColumnCount){
+                    			    alert("YOU WIN");
+                    			}
+                    		}
+                    	}
+                    }
                 </script>
             </div>
         </body>
