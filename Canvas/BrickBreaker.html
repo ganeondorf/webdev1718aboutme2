@@ -10,7 +10,7 @@
                 margin:0;
             }
             #myCanvas{
-                background:#eee;
+                background-image: url(https://draxe.com/wp-content/uploads/2015/01/bunch-of-bananas1-480x320.jpg);
                 display:block;
                 margin:0 auto;
             }
@@ -18,7 +18,6 @@
         <body>
             <div>
                 <canvas id="myCanvas" width='480' height='320'> </canvas>
-                <!--the 7th step-->
                 <script>
                 //reference
                     var canvas=document.getElementById("myCanvas");
@@ -27,8 +26,8 @@
                 // variables
                     var x=canvas.width/2;
                     var y=canvas.height-30;
-                    var dx=2;
-                    var dy=-2;
+                    var dx=3;
+                    var dy=-3;
                     var ballRadius=10;
                     var paddleHeight=10;
                     var paddleWidth=75;
@@ -107,6 +106,7 @@
                         	else{
                         		alert("GAME OVER");
                         		document.location.reload();
+                        		life=life-1;
                         	}
                         }
                         
@@ -120,12 +120,12 @@
                     }
                     function drawScore(){
                     	ctx.font = "16px arial";
-                    	ctx.fillStyle = 'black';
+                    	ctx.fillStyle = 'white';
                     	ctx.fillText('Score: ' + score, 8, 20);
                     }
                    function drawLives(){
                        ctx.font = "16px arial";
-                    	ctx.fillStyle = 'black';
+                    	ctx.fillStyle = 'white';
                     	ctx.fillText('Lives: ' + life, 108, 20);
                    }
                     
@@ -170,6 +170,7 @@
                     			}
                     			if (score==brickRowCount * brickColumnCount){
                     			    alert("YOU WIN");
+                    			    document.location.reload();
                     			}
                     		}
                     	}
