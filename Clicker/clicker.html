@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <title>clicker game</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            #container{
+                background-color:purple;
+                width:70%;
+            }
+            #myCanvas{
+                background-image: url("https://c1.staticflickr.com/3/2633/4081217254_d2e7bf59f3_z.jpg?zz=1");
+                display:block;
+                margin:0 auto;
+            }
+        </style>
+        <body>
+            <div class="container-fluid" id="container">
+                <p align="center">
+                    <!--<img id="ufo" src="ufo.gif" alt="click">-->
+                    <canvas onclick="myFunction(event)" id="myCanvas" width="500" height="500" style="background-color:white"></canvas>
+                    <button onclick="location.reload()">Restart</button>
+                </p>
+                <script>
+                        var canvas = document.getElementById('myCanvas');
+                        var ctx = canvas.getContext("2d");
+                        var score = 0;
+                        var lives = 3;
+                        var x=Math.random()*450;
+                        var y=Math.random()*450;
+                        drawScore();
+                        drawlives();
+                        myFunction(event);
+                                
+                        function drawScore(){
+                            ctx.font = "16px arial";
+                            ctx.fillStyle = 'white';
+                            ctx.fillText('Score: ' + score, 8, 490);
+                        }
+                        function drawlives(){
+                            ctx.font="16px arial";
+                            ctx.fillStyle='white';
+                            ctx.fillText("Lives: " + lives, 8, 470);
+                        }
+                        function myFunction(event){
+                            var img1 = new Image();
+                            img1.src = 'https://vignette.wikia.nocookie.net/fnaf-world-rpg/images/f/f6/UFO_Blue.gif/revision/latest?cb=20160905172526';
+                            img1.onload = function () {
+                            ctx.drawImage(img1, x, y);
+                            };
+                            var dx = event.clientX;
+                            var dy = event.clientY;
+                            if (x>=dx && x<=dx+100 && y>=dy && y<=dy+100){
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                score++;
+                                drawScore();
+                                drawlives();
+                                x=Math.random()*450;
+                                y=Math.random()*450;
+                                ctx.drawImage(img1, x, y);
+                            }
+                            else {
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                lives--;
+                                drawScore();
+                                drawlives();
+                                x=Math.random()*450;
+                                y=Math.random()*450;
+                                ctx.drawImage(img1, x, y);
+                                if (lives==0){
+                                    alert("Game Over");
+                                    location.reload();
+                                }
+                            }
+                        }
+                </script> 
+            </div>
+        </body>
+    </html>
