@@ -10,18 +10,24 @@
         <style>
             #container{
                 background-color:purple;
-                width:70%;
+                margin-top:auto;
+                margin-left: auto;
+                margin-right: auto;
+                width:50%;
             }
             #myCanvas{
-                background-image: url("https://c1.staticflickr.com/3/2633/4081217254_d2e7bf59f3_z.jpg?zz=1");
+                background-image: url(https://cdn-images-1.medium.com/max/500/1*-N0c5vnY7zZIfOD2E2b02g.png);
                 display:block;
                 margin:0 auto;
+            }
+            body{
+                opacity:0.88;
+                background-image: url(https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/images/649694main_pia15417-43_full.jpg);
             }
         </style>
         <body>
             <div class="container-fluid" id="container">
                 <p align="center">
-                    <!--<img id="ufo" src="ufo.gif" alt="click">-->
                     <canvas onclick="myFunction(event)" id="myCanvas" width="500" height="500" style="background-color:white"></canvas>
                     <button onclick="location.reload()">Restart</button>
                 </p>
