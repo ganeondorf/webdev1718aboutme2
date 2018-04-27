@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Food Finder Fast Food</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        </head>
+        <style>
+            #container{
+                width:90%;
+                height:700px;
+                background-color:#FFFFFF;;
+                margin:auto;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #FFFFFF;
+            }
+            li {
+                float: left;
+            }
+            li a {
+                display: block;
+                color: #47525E;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            li a:hover {
+                background-color: #E5E9F2;
+            }
+            #bannerimage {
+                width: 100%;
+                height: 50px;
+                background-color: #e2958f;
+                background-position: center;
+            }
+            #title{
+                text-align:center;
+                color:#47525E;
+                font-size:40px;
+                font-family: 'Arvo', serif;
+            }
+            
+            #map {
+                height: 700px;
+                width: 100%;
+                border:5px solid #B5CFEA;
+            }
+            #on{
+                color:white;
+                background-color:#47525E;
+            }
+            
+        </style>
+        <body>
+            <div id="container" class="container-fluid">
+                <div id="nav" class="container-fluid">
+                        <ul>
+                            <li><a href="settings.html">Settings</a></li>
+                            <li><a href="recommendations.html">Recommended</a></li>
+                            <li><a href="#">Fast Food</a></li>
+                            <li><a href="index.html">Map</a></li>
+                        </ul>
+                        <div id="bannerimage">
+                            <p id="title">
+                                <i class="material-icons" >restaurant</i>
+                                Food Finder
+                            </p>
+                        </div>
+                        <br>
+                        <div id="bulk">
+                            
+                            <button class="btn btn-default" id="on">Mcdonald's</button>
+                            <button class="btn btn-default"><a href="fastfoodbk.html">Burger King</a></button>
+                            <button class="btn btn-default"><a href="fastfoodwendys.html">Wendy's</a></button>
+                            <button class="btn btn-default"><a href="fastfoodkfc.html">KFC</a></button>
+                            <button class="btn btn-default"><a href="fastfoodculvers.html">Culver's</a></button>
+                            <button class="btn btn-default"><a href="fastfoodpopeyes.html">Popeye's</a></button>
+                            
+        <!--map-->
+                            <script>
+                            //https://developers.zomato.com/api#
+                            //https://www.google.com/maps/search/mcdonald's+in+chicago/@41.8335627,-87.7319644,11z/data=!3m1!4b1
+                            //needs to do pages #2, #3, #4, #5, #6
+                            //https://www.latlong.net/convert-address-to-lat-long.html
+                                function initMap() {
+                                    var locations = [
+                                        ['600 N Clark St, Chicago, IL 60610', 41.893020, -87.631556, 4],
+                                        ['4844 N Lincoln Ave, Chicago, IL 60625', 41.969883, -87.689661, 5],
+                                        ['3122 W Touhy Ave, Chicago, IL 60645', 42.012039, -87.708217, 3],
+                                        ['3154 W Foster Ave, Chicago, IL 60625', 41.976060, -87.708294, 2],
+                                        ['3241 W Peterson Ave, Chicago, IL 60645', 41.990035, -87.710527, 1],
+                                        ['3855 W Lawrence Ave, Chicago, IL 60625', 41.968028, -87.724842, 6],
+                                        ['3615 W Irving Park Rd, Chicago, IL 60618', 41.953498, -87.718301, 7],
+                                        ['4038 W Belmont Ave, Chicago, IL 60641', 41.939291, -87.728305, 8],
+                                        ['4601 W Diversey Ave, Chicago, IL 60639', 41.931199, -87.742230, 9],
+                                        ['4320 N Cicero Ave, Chicago, IL 60641', 41.959269, -87.747922, 10],
+                                        ['5656 W Irving Park Rd, Chicago, IL 60634', 41.953408, -87.769069, 11],
+                                        ['4946 N Milwaukee Ave, Chicago, IL 60630', 41.970571, -87.763764, 12],
+                                        ['2754 N Narragansett Ave, Chicago, IL 60639', 41.930658, -87.786209, 13],
+                                        ['1951 N Western Ave, Chicago, IL 60647', 41.917164, -87.686965, 14],
+                                        ['600 E Grand Ave, Chicago, IL 60611', 41.891551, -87.607375, 15],
+                                        ['645 N McClurg Ct, Chicago, IL 60611', 41.893230, -87.617419, 16],
+                                        ['10 E Chicago Ave, Chicago, IL 60611', 41.896971, -87.627700, 17],
+                                        ['300 N Wells, Spaces 205 & 207, Chicago, IL 60654', 41.888592, -87.634744, 18],
+                                        ['203 N LaSalle Dr, Chicago, IL 60601', 41.886945, -87.632437, 19],
+                                        ['1380 W Lake St, Chicago, IL 60607', 41.885734, -87.662005, 20],
+                                        ['233 N Michigan Ave, Chicago, IL 60601', 41.886819, -87.623672, 21],
+                                        ['36 W Randolph St, Chicago, IL 60601', 41.884704, -87.629247, 22],
+                                        ['119 N Wabash Ave, Chicago, IL 60602', 41.883772, -87.625962, 23],
+                                        ['500 W Madison St, Chicago, IL 60661', 41.882308, -87.640384, 24],
+                                        ['23 S Clark St, Chicago, IL 60603', 41.880982, -87.630553, 25],
+                                        ['230 S State St, Chicago, IL 60604', 41.878721, -87.627952, 26],
+                                        ['180 W Adams St, Chicago, IL 60603', 41.879764, -87.633522, 27],
+                                        ['225 S Canal St, Chicago, IL 60606', 41.878601, -87.638881, 28],
+                                        ['233 W Jackson Blvd, Chicago, IL 60606', 41.877948, -87.634926, 29],
+                                        ['111 W Jackson Blvd, Chicago, IL 60604', 41.877846, -87.631296, 30],
+                                        ['1664 S Blue Island Ave, Chicago, IL 60608', 41.858415, -87.660926, 31],
+                                        ['2301 S Lake Shore Dr, Chicago, IL 60616', 41.852623, -87.611958, 32],
+                                        ['2525 S Martin Luther King Dr, Chicago, IL 60616', 41.847095, -87.616767, 33],
+                                        ['6900 N Western Ave, Chicago, IL 60645', 42.007120, -87.690431, 34],
+                                        ['10000 W OHare Ave, Chicago, IL 60666', 41.974162, -87.907321, 35],
+                                        ['10000 W Prien Lake Rd, Chicago, IL 60666', 41.974831, -87.898519, 36],
+                                        ['3548 N Cicero Ave, Chicago, IL 60641', 41.945843, -87.747403, 37],
+                                        ['2707 N Milwaukee Ave, Chicago, IL 60647', 41.930470, -87.709218, 38],
+                                        ['2350 N Central Ave, Chicago, IL 60639', 41.923612, -87.766378, 39],
+                                        ['2317 N Cicero Ave, Chicago, IL 60639', 41.922826, -87.745923, 40],
+                                        ['500 W Madison St, Chicago, IL 60661', 41.882308, -87.640384, 41],
+                                        ['23 N Western Ave, Chicago, IL 60612', 41.881896, -87.685983, 42],
+                                        ['5015 W Madison St, Chicago, IL 60644', 41.880059, -87.750845, 43],
+                                        ['5624 West Roosevelt Road, Chicago, IL 60644', 41.865599, -87.764821, 44],
+                                        ['3200 West Roosevelt Road, Chicago, IL 60624', 41.867129, -87.706137, 45],
+                                        ['1664 S Blue Island Ave, Chicago, IL 60608', 41.858415, -87.660926, 46],
+                                        ['4334 W 26th St, Chicago, IL 60623', 41.844320, -87.732272, 47],
+                                        ['2609 S Kedzie Ave, Chicago, IL 60623', 41.844090, -87.704753, 48],
+                                        ];
+                                        
+
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                      zoom: 11.2,
+                                      center: new google.maps.LatLng(41.92, -87.75),
+                                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    });
+                                    var marker, i;
+                                    for (i = 0; i < locations.length; i++) {  
+                                      marker = new google.maps.Marker({
+                                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                        map: map
+                                      });
+                                      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                        return function() {
+                                          infowindow.setContent(locations[i][0]);
+                                          infowindow.open(map, marker);
+                                        }
+                                      })(marker, i));
+                                    }
+                                }
+                            </script>
+                            <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSXU2RI-GjLibwWvpOAChhFl2LGM9OHts&callback=initMap">
+                            </script>
+                            <div class="container-fluid" id="container">
+                                <br>
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </body>
+    </html>

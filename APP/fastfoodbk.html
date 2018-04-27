@@ -50,68 +50,14 @@
                 font-family: 'Arvo', serif;
             }
             
-            .box {
-                display: block;
-                position: relative;
-                padding-left: 35px;
-                margin-bottom: 12px;
-                cursor: pointer;
-                color:#47525E;
-                font-size: 22px;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            
-            .box input {
-                position: absolute;
-                opacity: 0;
-                cursor: pointer;
-            }
-            
-            .checkmark {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 25px;
-                width: 25px;
-                background-color: #eee;
-            }
-            
-            .box:hover input ~ .checkmark {
-                background-color: #ccc;
-            }
-            
-            .box input:checked ~ .checkmark {
-                background-color: #2196F3;
-            }
-            
-            .checkmark:after {
-                content: "";
-                position: absolute;
-                display: none;
-            }
-            
-            .box input:checked ~ .checkmark:after {
-                display: block;
-            }
-            
-            .box .checkmark:after {
-                left: 9px;
-                top: 5px;
-                width: 5px;
-                height: 10px;
-                border: solid white;
-                border-width: 0 3px 3px 0;
-                -webkit-transform: rotate(45deg);
-                -ms-transform: rotate(45deg);
-                transform: rotate(45deg);
-            }
             #map {
                 height: 700px;
                 width: 100%;
                 border:5px solid #B5CFEA;
+            }
+            #on{
+                color:white;
+                background-color:#47525E;
             }
             
         </style>
@@ -133,54 +79,33 @@
                         <br>
                         <div id="bulk">
                             
-        <!--rather than create a checklist, maybe buttons would be better, using this certain type of google API code it would seem to be the easier less time consuming choice-->
-                            
-                            <label class="box">Mcdonalds
-                              <input type="checkbox" checked="checked">
-                              <span class="checkmark"></span>
-                            </label>
-                            <label class="box">Burger King
-                              <input type="checkbox">
-                              <span class="checkmark"></span>
-                            </label>
-                            <label class="box">Wendy's
-                              <input type="checkbox">
-                              <span class="checkmark"></span>
-                            </label>
-                            <label class="box">KFC
-                              <input type="checkbox">
-                              <span class="checkmark"></span>
-                            </label>
-                            <label class="box">Culver's
-                              <input type="checkbox">
-                              <span class="checkmark"></span>
-                            </label>
-                            <label class="box">Popeye's
-                              <input type="checkbox">
-                              <span class="checkmark"></span>
-                            </label>
+                            <button class="btn btn-default"><a href="fastfoodmcdonalds.html">Mcdonald's</a></button>
+                            <button class="btn btn-default" id="on">Burger King</button>
+                            <button class="btn btn-default"><a href="fastfoodwendys.html">Wendy's</a></button>
+                            <button class="btn btn-default"><a href="fastfoodkfc.html">KFC</a></button>
+                            <button class="btn btn-default"><a href="fastfoodculvers.html">Culver's</a></button>
+                            <button class="btn btn-default"><a href="fastfoodpopeyes.html">Popeye's</a></button>
                             
         <!--map-->
                             <script>
                             //https://developers.zomato.com/api#
-                            //https://www.google.com/maps/place/McDonald's/@41.9298517,-87.7269497,11.44z/data=!4m8!1m2!2m1!1smcdonalds+chicago!3m4!1s0x0:0xcc659a690fc90c93!8m2!3d41.8928856!4d-87.6315451
+                            //https://www.google.com/maps?safe=strict&rlz=1C5CHFA_enUS761US761&q=burger+king+in+chicago&um=1&ie=UTF-8&sa=X&ved=0ahUKEwj2jf2SxdXaAhVOZKwKHYUQBlcQ_AUICigB
                             //https://www.latlong.net/convert-address-to-lat-long.html
                                 function initMap() {
                                     var locations = [
-                                        ['600 N Clark St, Chicago, IL 60610', 41.893020, -87.631556, 4],
-                                        ['4844 N Lincoln Ave, Chicago, IL 60625', 41.969883, -87.689661, 5],
-                                        ['3122 W Touhy Ave, Chicago, IL 60645', 42.012039, -87.708217, 3],
-                                        ['3154 W Foster Ave, Chicago, IL 60625', 41.976060, -87.708294, 2],
-                                        ['3241 W Peterson Ave, Chicago, IL 60645', 41.990035, -87.710527, 1],
-                                        ['3855 W Lawrence Ave, Chicago, IL 60625', 41.968028, -87.724842, 6],
-                                        ['3615 W Irving Park Rd, Chicago, IL 60618', 41.953498, -87.718301, 7],
-                                        ['4038 W Belmont Ave, Chicago, IL 60641', 41.939291, -87.728305, 8],
-                                        ['4601 W Diversey Ave, Chicago, IL 60639', 41.931199, -87.742230, 9],
-                                        ['4320 N Cicero Ave, Chicago, IL 60641', 41.959269, -87.747922, 10],
-                                        ['5656 W Irving Park Rd, Chicago, IL 60634', 41.953408, -87.769069, 11],
-                                        ['4946 N Milwaukee Ave, Chicago, IL 60630', 41.970571, -87.763764, 12],
-                                        ['2754 N Narragansett Ave, Chicago, IL 60639', 41.930658, -87.786209, 13],
-                                        ['1951 N Western Ave, Chicago, IL 60647', 41.930658, -87.786209, 13],
+                                        ['6400 W Irving Park Rd', 41.953150, -87.786872, 1],
+                                        ['151 N Michigan Ave', 41.885080, -87.624135, 2],
+                                        ['100 W Randolph St', 41.885153, -87.631672, 3],
+                                        ['4125 N Milwaukee Ave', 41.955821, -87.749768, 4],
+                                        ['6261 N Lincoln Ave', 41.995887, -87.715857, 5],
+                                        ['6400 W Fullerton Ave', 41.924064, -87.785748, 6],
+                                        ['3953 W Chicago Ave', 41.895146, -87.725535, 7],
+                                        ['4910 W North Ave', 41.909958, -87.749614, 8],
+                                        ['2449 W Lawrence Ave', 41.968353, -87.690585, 9],
+                                        ['2840 W North Ave', 41.910502, -87.69867, 10],
+                                        ['1323 W Irving Park Rd', 41.954019, -87.663161, 11],
+                                        ['4514 W Diversey Ave', 41.931910, -87.73998, 12],
+                                        
                                         ];
                                     var map = new google.maps.Map(document.getElementById('map'), {
                                       zoom: 10.8,
