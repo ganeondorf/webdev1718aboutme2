@@ -11,10 +11,13 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         </head>
         <style>
+            body{
+                background-color:#545454;
+            }
             #container{
                 width:90%;
                 height:700px;
-                background-color:#FFFFFF;;
+                background-color:#545454;
                 margin:auto;
             }
             ul {
@@ -22,14 +25,13 @@
                 margin: 0;
                 padding: 0;
                 overflow: hidden;
-                background-color: #FFFFFF;
             }
             li {
                 float: left;
             }
             li a {
                 display: block;
-                color: #47525E;
+                color: #FFFFFF;
                 text-align: center;
                 padding: 14px 16px;
                 text-decoration: none;
@@ -40,7 +42,7 @@
             #bannerimage {
                 width: 100%;
                 height: 50px;
-                background-color: #e2958f;
+                background-color: #88F0C8;
                 background-position: center;
             }
             #title{
@@ -53,7 +55,7 @@
             #map {
                 height: 700px;
                 width: 100%;
-                border:5px solid #B5CFEA;
+                border:5px solid #3C3F42;
             }
             #on{
                 color:white;
@@ -65,10 +67,10 @@
             <div id="container" class="container-fluid">
                 <div id="nav" class="container-fluid">
                         <ul>
-                            <li><a href="settings.html">Settings</a></li>
-                            <li><a href="recommendations.html">Recommended</a></li>
-                            <li><a href="#">Fast Food</a></li>
-                            <li><a href="index.html">Map</a></li>
+                            <li><a href="darkSettings.html">Settings</a></li>
+                            <li><a href="darkRecommendations.html">Recommended</a></li>
+                            <li><a href="darkmcdonalds.html">Fast Food</a></li>
+                            <li><a href="darkIndex.html">Map</a></li>
                         </ul>
                         <div id="bannerimage">
                             <p id="title">
@@ -79,12 +81,12 @@
                         <br>
                         <div id="bulk">
                             
-                            <button class="btn btn-default"><a href="fastfoodmcdonalds.html">Mcdonald's</a></button>
-                            <button class="btn btn-default"><a href="fastfoodbk.html">Burger King</a></button>
-                            <button class="btn btn-default"><a href="fastfoodwendys.html">Wendy's</a></button>
+                            <button class="btn btn-default"><a href="darkmcdonalds.html">Mcdonald's</a></button>
+                            <button class="btn btn-default"><a href="darkbk.html">Burger King</a></button>
+                            <button class="btn btn-default"><a href="darkwendys.html">Wendy's</a></button>
                             <button class="btn btn-default" id="on">KFC</button>
-                            <button class="btn btn-default"><a href="fastfoodculvers.html">Culver's</a></button>
-                            <button class="btn btn-default"><a href="fastfoodpopeyes.html">Popeye's</a></button>
+                            <button class="btn btn-default"><a href="darkculvers.html">Culver's</a></button>
+                            <button class="btn btn-default"><a href="darkpopeyes.html">Popeye's</a></button>
                             
         <!--map-->
                             <script>
@@ -120,7 +122,7 @@
                                      ['60 E Lake St, Chicago, IL 60601', 44.9483594, -93.2771659],
                                      ['124 E 103rd St, Chicago, IL 60628', 41.7074416, -87.6178473],
                                      ['7 E Garfield Blvd, Chicago, IL 60637', 41.794039, -87.625155],
-                                     ['748 W Diversey Avenue, Chicago, IL 60614', 41.933092, -87.648389],
+                                     ['748 Diversey Avenue, Chicago, IL 60614', 41.933092, -87.648389],
                                      ['1644 W 95th St, Chicago, IL', 41.721481, -87.664471],
                                      ['6622 W Fullerton Ave, Chicago, IL', 41.923709, -87.788571],
                                      ['5991 N Lincoln Ave, Chicago, IL', 41.990344, -87.706800],
@@ -139,10 +141,6 @@
                                      ['4220 N Cicero Ave, Chicago, IL 60641', 41.957773, -87.747773],
                                      ['3614 S Damen Ave, Chicago, IL 60609', 41.828012, -87.675459],
                                      ['3509 N Harlem Ave, Chicago, IL 60634', 41.943585, -87.806720],
-                                     ['7440 S Kostner Ave, Chicago, IL 60629', 41.757632, -87.732473],
-                                     ['612 S Wabash Ave, Chicago, IL 60605', 41.873966, -87.626300],
-                                     ['3511 W Devon Ave, Chicago, IL 60659', 41.997041, -87.716530],
-                                     ['2575 N Clybourn Ave, Chicago, IL 60614', 41.928511, -87.673331],
                                      
                                         ];
                                     var map = new google.maps.Map(document.getElementById('map'), {

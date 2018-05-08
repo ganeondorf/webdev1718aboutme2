@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Food Finder Fast Food</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        </head>
+        <style>
+            body{
+                background-color:#545454;
+            }
+            #container{
+                width:90%;
+                height:700px;
+                background-color:#545454;
+                margin:auto;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            li {
+                float: left;
+            }
+            li a {
+                display: block;
+                color: #FFFFFF;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            li a:hover {
+                background-color: #E5E9F2;
+            }
+            #bannerimage {
+                width: 100%;
+                height: 50px;
+                background-color: #88F0C8;
+                background-position: center;
+            }
+            #title{
+                text-align:center;
+                color:#47525E;
+                font-size:40px;
+                font-family: 'Arvo', serif;
+            }
+            
+            #map {
+                height: 700px;
+                width: 100%;
+                border:5px solid #3C3F42;
+            }
+            #on{
+                color:white;
+                background-color:#47525E;
+            }
+            
+        </style>
+        <body>
+            <div id="container" class="container-fluid">
+                <div id="nav" class="container-fluid">
+                        <ul>
+                            <li><a href="darkSettings.html">Settings</a></li>
+                            <li><a href="darkRecommendations.html">Recommended</a></li>
+                            <li><a href="darkmcdonalds.html">Fast Food</a></li>
+                            <li><a href="darkIndex.html">Map</a></li>
+                        </ul>
+                        <div id="bannerimage">
+                            <p id="title">
+                                <i class="material-icons" >restaurant</i>
+                                Food Finder
+                            </p>
+                        </div>
+                        <br>
+                        <div id="bulk">
+                            
+                            <button class="btn btn-default"><a href="darkmcdonalds.html">Mcdonald's</a></button>
+                            <button class="btn btn-default"><a href="darkbk.html">Burger King</a></button>
+                            <button class="btn btn-default"><a href="darkwendys.html">Wendy's</a></button>
+                            <button class="btn btn-default"><a href="darkkfc.html">KFC</a></button>
+                            <button class="btn btn-default"><a href="darkculvers.html">Culver's</a></button>
+                            <button class="btn btn-default" id="on">Popeye's</button>
+                            
+        <!--map-->
+                            <script>
+                            //https://developers.zomato.com/api#
+                            //https://www.google.com/maps?safe=strict&rlz=1C5CHFA_enUS761US761&q=popeyes+in+chicago&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiLq7KyxdXaAhVCnq0KHZfMA-cQ_AUICigB
+                            //https://www.latlong.net/convert-address-to-lat-long.html
+                                function initMap() {
+                                    var locations = [
+                                        ['1959 Howard St, Chicago, IL 60626', 42.019182, -87.679879, 1],
+                                        ['6340 N Broadway St, Chicago, IL 60660', 41.997645, -87.660829, 2],
+                                        ['6321 N Lincoln Ave, Chicago, IL 60659', 41.996516, -87.716763, 3],
+                                        ['5353 N Harlem Ave, Chicago, IL 60656', 41.978673, -87.806724, 4],
+                                        ['4866 N Milwaukee Ave, Chicago, IL 60630', 41.969443, -87.762476, 5],
+                                        ['3352 W Lawrence Ave, Chicago, IL 60625', 41.968759, -87.713064, 6],
+                                        ['1600 W Irving Park Rd, Chicago, IL 60613', 41.954537, -87.669479, 7],
+                                        ['5248 W Belmont Ave, Chicago, IL 60641', 41.938881, -87.758766, 8],
+                                        ['6622 W Fullerton Ave, Chicago, IL 60707', 41.923709, -87.788571, 9],
+                                        ['5500 W North Ave, Chicago, IL 60639', 41.909606, -87.763379, 10],
+                                        ['2355 W Addison St, Chicago, IL 60618', 41.946543, -87.687967, 11],
+                                        ['2800 W Diversey Ave, Chicago, IL 60647', 41.932291, -87.697994, 12],
+                                        ['1949 W Fullerton Ave, Chicago, IL 60614', 41.924818, -87.677510, 13],
+                                        ['3202 W Chicago Ave, Chicago, IL 60651', 41.895860, -87.706832, 14],
+                                        ['159 N Wabash Ave, Chicago, IL 60601', 41.884917, -87.626027, 15],
+                                        ['500 W Madison St, Chicago, IL 60661', 41.882308, -87.640384, 16],
+                                        ['1251 S Halsted St, Chicago, IL 60607', 41.865646, -87.646590, 17],
+                                        ['50 N Western Ave, Chicago, IL 60612', 41.882688, -87.686830, 18],
+                                        ['3451 W Roosevelt Rd, Chicago, IL 60624', 41.865981, -87.712128, 19],
+                                        ['5050 S Cicero Ave, Chicago, IL 60638', 41.800605, -87.743230, 20],
+                                        ['4431 S Archer Ave, Chicago, IL 60632', 41.812476, -87.706389, 21],
+                                        ['2556 S California Ave, Chicago, IL 60608', 41.844837, -87.695513, 22],
+                                        ['3204 S Ashland Ave, Chicago, IL 60608', 41.835300, -87.665992, 23],
+                                        ['300 E 35th St, Chicago, IL 60616', 41.831253, -87.618985, 24],
+                                        ['818 E 47th St, Chicago, IL 60653', 41.809784, -87.605562, 25],
+                                        ];
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                      zoom: 10.89,
+                                      center: new google.maps.LatLng(41.8781, -87.6298),
+                                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    });
+                                    var marker, i;
+                                    for (i = 0; i < locations.length; i++) {  
+                                      marker = new google.maps.Marker({
+                                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                        map: map
+                                      });
+                                      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                        return function() {
+                                          infowindow.setContent(locations[i][0]);
+                                          infowindow.open(map, marker);
+                                        }
+                                      })(marker, i));
+                                    }
+                                }
+                            </script>
+                            <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSXU2RI-GjLibwWvpOAChhFl2LGM9OHts&callback=initMap">
+                            </script>
+                            <div class="container-fluid" id="container">
+                                <br>
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </body>
+    </html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Food Finder Fast Food</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        </head>
+        <style>
+            body{
+                background-color:#545454;
+            }
+            #container{
+                width:90%;
+                height:700px;
+                background-color:#545454;
+                margin:auto;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            li {
+                float: left;
+            }
+            li a {
+                display: block;
+                color: #FFFFFF;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            li a:hover {
+                background-color: #E5E9F2;
+            }
+            #bannerimage {
+                width: 100%;
+                height: 50px;
+                background-color: #88F0C8;
+                background-position: center;
+            }
+            #title{
+                text-align:center;
+                color:#47525E;
+                font-size:40px;
+                font-family: 'Arvo', serif;
+            }
+            
+            #map {
+                height: 700px;
+                width: 100%;
+                border:5px solid #3C3F42;
+            }
+            #on{
+                color:white;
+                background-color:#47525E;
+            }
+            
+        </style>
+        <body>
+            <div id="container" class="container-fluid">
+                <div id="nav" class="container-fluid">
+                        <ul>
+                            <li><a href="darkSettings.html">Settings</a></li>
+                            <li><a href="darkRecommendations.html">Recommended</a></li>
+                            <li><a href="darkmcdonalds.html">Fast Food</a></li>
+                            <li><a href="darkIndex.html">Map</a></li>
+                        </ul>
+                        <div id="bannerimage">
+                            <p id="title">
+                                <i class="material-icons" >restaurant</i>
+                                Food Finder
+                            </p>
+                        </div>
+                        <br>
+                        <div id="bulk">
+                            
+                            <button class="btn btn-default"><a href="darkmcdonalds.html">Mcdonald's</a></button>
+                            <button class="btn btn-default"><a href="darkbk.html">Burger King</a></button>
+                            <button class="btn btn-default" id="on">Wendy's</button>
+                            <button class="btn btn-default"><a href="darkkfc.html">KFC</a></button>
+                            <button class="btn btn-default"><a href="darkculvers.html">Culver's</a></button>
+                            <button class="btn btn-default"><a href="darkpopeyes.html">Popeye's</a></button>
+                            
+        <!--map-->
+                            <script>
+                            //https://developers.zomato.com/api#
+                            //https://www.google.com/maps/place/McDonald's/@41.9298517,-87.7269497,11.44z/data=!4m8!1m2!2m1!1smcdonalds+chicago!3m4!1s0x0:0xcc659a690fc90c93!8m2!3d41.8928856!4d-87.6315451
+                            //https://www.latlong.net/convert-address-to-lat-long.html
+                                function initMap() {
+                                    var locations = [
+                                        ['3154 W Foster Ave, Chicago, IL 60625', 41.976060, -87.708294, 2],
+                                        ['5472 N Harlem Ave, Chicago, IL 60656', 41.98036829999999, -87.80731889999998],
+                                        ['3943 N Harlem Ave, Chicago, IL 60634', 41.9519768, -87.8069726],
+                                        ['4140 W Belmont Ave, Chicago, IL 60641', 41.9392711, -87.73122890000002],
+                                        ['4412 N Pulaski Rd, Chicago, IL 60630', 41.9614618, -87.7281542],
+                                        ['6324 N Western Ave, Chicago, IL 60659', 41.9967672, -87.69018059999996],
+                                        ['3610 N Western Ave, Chicago, IL 60618', 41.947156, -87.68860189999998],
+                                        ['2053 W Lawrence Ave, Chicago, IL 60625', 41.9685512, -87.68118859999998],
+                                        ['4901 W North Ave, Chicago, IL 60639', 41.9092193, -87.74878419999999],
+                                        ['2215 N Washtenaw Ave, Chicago, IL 60647', 41.9222308, -87.6952632],
+                                        ['2312 N Ashland Ave, Chicago, IL 60614', 41.923769, -87.66870840000001],
+                                        ['11 N Harlem Ave, Oak Park, IL 60302', 41.8800056, -87.80434230000003],
+                                        ['145 S Western Ave, Chicago, IL 60612', 41.878931, -87.68604110000001],
+                                        ['1623 W Division St, Chicago, IL 60622', 41.9029747, -87.66834240000003],
+                                        ['2610 W Pershing Rd, Chicago, IL 60632', 41.8231531, -87.69004589999997],
+                                        ['5729 S Kedzie Ave, Chicago, IL 60629', 41.7892903, -87.70317460000001],
+                                        ['5679 S Archer Ave, Chicago, IL 60638', 41.7969128, -87.75299840000002],
+                                        ['4100 S Pulaski Rd, Chicago, IL 60632', 41.8180097, -87.72414959999998],
+                                        ['8302 S Ashland Ave, Chicago, IL 60620', 41.742708, -87.66356510000003],
+                                        ['7601 S Cicero Ave, Chicago, IL 60652', 41.7574978, -87.73717020000004],
+                                        ['7031 S Western Ave, Chicago, IL 60636', 41.7657605, -87.68297230000002],
+                                        ['242 W Garfield Blvd, Chicago, IL 60609', 41.7948139, -87.63263540000003],
+                                        ['3820 S Archer Ave, Chicago, IL 60632', 41.82286999999999, -87.689911],
+                                        ['6 S Clark St, Chicago, IL 60603', 41.8817731, -87.63106859999999],
+                                        ['3516 E 118th St, Chicago, IL 60617', 41.6812568, -87.5379423],
+                                        ['5456 N Harlem Ave, Chicago, IL 60656', 41.9799514, -87.8074772],
+                                        ['9843 S Western Ave, Chicago, IL 60643', 41.7141255, -87.68149670000003],
+                                        ['750 S Halsted St, Chicago, IL 60607', 41.8719123, -87.6479531],
+                                        ['8645 S Stony Island Ave, Chicago, IL 60617', 41.7374909, -87.58487969999999],
+                                        ['758 W 117th St, Chicago, IL 60628', 41.6821202, -87.64165639999999],
+                                        ['7 E 111th St, Chicago, IL 60628', 41.6923879, -87.62253299999998],
+                                        ['344 E 95th St, Chicago, IL 60619', 41.7220936, -87.61489919999997],
+                                        
+                                        
+                                        ];
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                      zoom: 10.8,
+                                      center: new google.maps.LatLng(41.83, -87.74),
+                                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    });
+                                    var marker, i;
+                                    for (i = 0; i < locations.length; i++) {  
+                                      marker = new google.maps.Marker({
+                                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                        map: map
+                                      });
+                                      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                        return function() {
+                                          infowindow.setContent(locations[i][0]);
+                                          infowindow.open(map, marker);
+                                        }
+                                      })(marker, i));
+                                    }
+                                }
+                            </script>
+                            <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSXU2RI-GjLibwWvpOAChhFl2LGM9OHts&callback=initMap">
+                            </script>
+                            <div class="container-fluid" id="container">
+                                <br>
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </body>
+    </html>
