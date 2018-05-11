@@ -1,160 +1,82 @@
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF7avkh-6gWe5u3JLGyqnPDX61s1Qs0Yk&libraries=places&callback=initAutocomplete" async defer></script>
-
-<style>
-#map {
-  height: 900px;
-  width: 100%;
-  border:5px solid #B5CFEA;
-}
-
-
-#description {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-}
-
-#infowindow-content .title {
-  font-weight: bold;
-}
-
-#infowindow-content {
-  display: none;
-}
-
-#map #infowindow-content {
-  display: inline;
-}
-
-.pac-card {
-  margin: 10px 10px 0 0;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  font-family: Roboto;
-}
-
-#pac-container {
-  padding-bottom: 12px;
-  margin-right: 12px;
-}
-
-.pac-controls {
-  display: inline-block;
-  padding: 5px 11px;
-}
-
-.pac-controls label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
-
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 400px;
-}
-
-#pac-input:focus {
-  border-color: #4d90fe;
-}
-
-#title {
-  color: #fff;
-  background-color: #4d90fe;
-  font-size: 25px;
-  font-weight: 500;
-  padding: 6px 12px;
-}
-
-#target {
-  width: 345px;
-}
-</style>
-<div id="container" class="container-fluid">
-<center>
-<script>
-  function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {
-      lat: 41.8781,
-      lng: -87.6298
-    },
-    zoom: 13,
-    mapTypeId: 'roadmap'
-  });
-
-  // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-  // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-  });
-
-  var markers = [];
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
-
-    if (places.length == 0) {
-      return;
-    }
-
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
-      if (!place.geometry) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
-      var icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
-
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        map: map,
-        icon: icon,
-        title: place.name,
-        position: place.geometry.location
-      }));
-
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
-  });
-}
-
-</script>
-</center>
-</div>
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Food Finder Fast Food</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        </head>
+        <style>
+            body{
+                background-color:#545454;
+            }
+            #container{
+                width:90%;
+                height:700px;
+                background-color:#545454;;
+                margin:auto;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            li {
+                float: left;
+            }
+            li a {
+                display: block;
+                color: #FFFFFF;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            li a:hover {
+                background-color: #E5E9F2;
+            }
+            #bannerimage {
+                width: 100%;
+                height: 50px;
+                background-color: #88F0C8;
+                background-position: center;
+            }
+            #title{
+                text-align:center;
+                color:#47525E;
+                font-size:40px;
+                font-family: 'Arvo', serif;
+            }
+            
+            .responsive-map{
+            overflow:hidden;
+            padding-bottom:56.25%;
+            position:relative;
+            height:0;
+            }
+            .responsive-map iframe{
+            left:0;
+            top:0;
+            height:100%;
+            width:100%;
+            position:absolute;
+            }
+            #on{
+                color:white;
+                background-color:#47525E;
+            }
+            
+        </style>
+        <body>
+            <div id="container" class="container-fluid">
+              <div class="responsive-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.126963167523!2d-81.5660680494897!3d28.385232982430246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88dd7ee634caa5f7%3A0xa71e391fd01cf1a0!2sWalt+Disney+World+Resort!5e0!3m2!1sen!2sus!4v1463933469006" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </div>
+            </div>
+        </body>
+    </html>
