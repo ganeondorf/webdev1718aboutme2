@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+          <title>Access Camera</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsiYqAPZgMcFuylbx9RXNkfjwO5vovC0k&libraries=places&callback=initAutocomplete" async defer></script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsiYqAPZgMcFuylbx9RXNkfjwO5vovC0k&libraries=places"></script>
+          <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF7avkh-6gWe5u3JLGyqnPDX61s1Qs0Yk&libraries=places&callback=initAutocomplete" async defer></script>
+        </head>
+        <style>
+        #container{
+          margin:auto;
+          background-color:#00FFFF;
+        }
+        p{
+          text-align:center;
+        }
+        h1{
+          text-align:center;
+        }
+        </style>
+        <body>
+            <div id='container'>
+              <h1>Isaiah Martinez</h1>
+              <video id="player" controls autoplay></video>
+              <input type="file" accept="audio/*" capture id='recorder'>
+              <audio id="audio" controls></audio>
+              <button id="capture">Capture</button>
+              <button>Audio</button>
+              <canvas id="canvas" width=320 height=240></canvas>
+              <script>
+                const player = document.getElementById('player');
+                const canvas = document.getElementById('canvas');
+                const context = canvas.getContext('2d');
+                const captureButton = document.getElementById('capture');
+                const constraints = {
+                  video: true,
+                };
+                captureButton.addEventListener('click', () => {
+                  context.drawImage(player, 0, 0, canvas.width, canvas.height);
+                  player.srcObject.getVideoTracks().forEach(track => track.stop());
+                });
+                navigator.mediaDevices.getUserMedia(constraints)
+                  .then((stream) => {
+                    player.srcObject = stream;
+                  });
+                  
+                //audio  
+                var recorder = document.getElementById('recorder');
+                var audio = document.getElementById('audio');
+                recorder.addEventListener('change', function(e) {
+                  var file = e.target.files[0];
+                  audio.src =  URL.createObjectURL(file);
+                });
+                
+              </script>
+  <!--https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa-->
+                
+            </div>
+        </body>
+    </html>
