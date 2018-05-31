@@ -16,6 +16,8 @@
         <style>
         #container{
           margin:auto;
+          width:90%;
+          height:100%;
           background-color:#00FFFF;
         }
         p{
@@ -26,15 +28,19 @@
         }
         </style>
         <body>
-            <div id='container'>
+            <div id='container' class="container-fluid">
               <h1>Isaiah Martinez</h1>
-              <video id="player" controls autoplay></video>
-              <input type="file" accept="audio/*" capture id='recorder'>
-              <audio id="audio" controls></audio>
+              <br>
+              <p><video id="player" controls autoplay></video></p>
+              <br>
+            <!--click to call-->
+              <div>Click to call Isaiah: <a href="tel:+1-773-717-6660">+1 (773) 717-6660</a></div>
               <button id="capture">Capture</button>
-              <button>Audio</button>
+              <button id=gFS>Go Fullscreen</button>
               <canvas id="canvas" width=320 height=240></canvas>
               <script>
+              
+            //video
                 const player = document.getElementById('player');
                 const canvas = document.getElementById('canvas');
                 const context = canvas.getContext('2d');
@@ -51,17 +57,42 @@
                     player.srcObject = stream;
                   });
                   
-                //audio  
-                var recorder = document.getElementById('recorder');
-                var audio = document.getElementById('audio');
-                recorder.addEventListener('change', function(e) {
-                  var file = e.target.files[0];
-                  audio.src =  URL.createObjectURL(file);
+            //location
+                window.onload = function(){
+                  var startPos;
+                  var geoSuccess=function(position){
+                    startPos=position;
+                    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+                    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+                  };
+                  navigator.geolocation.getCurrentPosition(geoSuccess);
+                };
+                
+            //fullScreen
+                var gFS=document.getElementById('gFS');
+                gFS.addEventListener('click', function (){
+                  toggleFullScreen();
                 });
+                function toggleFullScreen(){
+                  var doc=window.document;
+                  var docEl=doc.documentElement;
+                  
+                  var requestFullScreen = docEl.requestFullScreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullScreen;
+                  var cancelFullScreen = doc.exitFullScreen || doc.mozCancelFullScreen || doc.webkitCancelFullScreen || doc.msCancelFullScreen;
+                  
+                  if(!doc.fullScreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement){
+                    requestFullScreen.call(docEl);
+                  }
+                  else{
+                    cancelFullScreen.call(doc);
+                  }
+                }
+                
+            //orientation
+                
                 
               </script>
   <!--https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa-->
-                
             </div>
         </body>
     </html>
