@@ -18,7 +18,7 @@
           margin:auto;
           width:90%;
           height:100%;
-          background-color:#00FFFF;
+          background-color:#f0ead6;
         }
         p{
           text-align:center;
@@ -89,7 +89,19 @@
                 }
                 
             //orientation
+                if (window.DeviceOrientationEvent) {
+                    window.addEventListener("deviceorientation", function(event) {
+                        var rotateDegrees = event.alpha;
+                        var leftToRight = event.gamma;
+                        var frontToBack = event.beta;
                 
+                        handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+                    }, true);
+                }
+
+                var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
+                    // do something amazing
+                };
                 
               </script>
   <!--https://stackoverflow.com/questions/19183180/how-to-save-an-image-to-localstorage-and-display-it-on-the-next-page?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa-->
